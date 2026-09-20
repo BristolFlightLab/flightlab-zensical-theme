@@ -14,7 +14,7 @@ copies or substantial portions of the Software.
 
 This licence covers the stylesheet only. It does not grant any right in the
 University of Bristol or Bristol Flight Lab names, crests, logos, wordmarks or
-visual identity, including the artwork in assets/brand/. See BRAND.md.
+visual identity, including the artwork in dist/assets/brand/. See BRAND.md.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,

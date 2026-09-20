@@ -20,12 +20,18 @@ git add theme && git commit -m "Take the site theme from flightlab-zensical-them
 extra_css = ["stylesheets/flightlab.css", "stylesheets/course.css"]
 
 [project.theme]
-custom_dir = "theme"
+custom_dir = "theme/dist"
 ```
 
-Everything in `custom_dir` is copied to the site root, so `stylesheets/` and
+Everything in `custom_dir` is copied to the site root, which is why it points at
+`dist/` rather than the repository root: this repository's own README, licence
+and scripts would otherwise be published on your site, and a visitor to
+`yoursite/README.md` would get *this* README. Inside `dist/`, `stylesheets/` and
 `assets/` land beside the ones from `docs/`. **A file in `docs/` wins over the
 same path here**, so a unit can override one file without forking the theme.
+
+> **v1.0.0 put its files at the repository root** and therefore leaked them onto
+> the site. Use v2.0.0 or later, and point `custom_dir` at `theme/dist`.
 
 Pin to a tag. The submodule records the exact commit, so the site builds the
 same in a year, and upgrading is a deliberate `git -C theme checkout vX.Y.Z`.
@@ -60,7 +66,7 @@ Not provided: a unit's own logo and favicon. Keep those in your `docs/`, and set
 
 ## The artwork
 
-`assets/brand/` is vendored from
+`dist/assets/brand/` is vendored from
 [`flightlab-brand`](https://github.com/BristolFlightLab/flightlab-brand), which
 is the single source. `BRAND-VERSION` records the tag it came from. To take a
 newer one:

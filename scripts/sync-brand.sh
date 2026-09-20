@@ -10,7 +10,7 @@
 set -eu
 REF="${1:-main}"
 REPO="https://github.com/BristolFlightLab/flightlab-brand.git"
-DEST="${DEST:-assets/brand}"
+DEST="${DEST:-dist/assets/brand}"
 # Which files to take. Default: everything. A template that only needs the
 # shared chrome sets this, so it doesn't ship another unit's mark.
 FILES="${FILES:-edge-header.svg edge-section.svg edge-title.svg logo-bristol.svg logo-bristol-white.svg}"
