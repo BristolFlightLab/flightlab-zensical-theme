@@ -61,8 +61,16 @@ Provided: the colour palette, the red header band and its slanted edge, the
 University crest in the header, link and admonition colours, and the print
 adjustments.
 
-Not provided: a unit's own logo and favicon. Keep those in your `docs/`, and set
-`theme.logo` and `theme.favicon` to them.
+Not provided: a unit's own logo, favicon and nav mark. Keep those in your
+`docs/`, set `theme.logo` and `theme.favicon` to them, and — if you want your
+own mark beside **Home** in place of the stock plane icon — set one variable:
+
+```css
+:root { --fl-nav-mark: url('data:image/svg+xml;utf8,<svg …>'); }
+.md-nav__link svg.lucide-plane { display: none; }
+```
+
+Set nothing and the stock icon stays.
 
 ## The artwork
 

@@ -287,3 +287,41 @@ html .md-footer-meta.md-typeset a:hover {
     border-bottom-color: var(--fl-red);
   }
 }
+
+/* ---------- Footer: the bits Material leaves too small or invisible ---------- */
+
+/* Material's copyright line is small enough to be hard work at the foot of a
+   long page. */
+html .md-footer-meta .md-copyright {
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+/* A visible keyboard focus ring on the red band. It has to be white: the accent
+   colour is itself this red, so an accent outline disappears into the band.
+   Never rely on colour alone for state. */
+html .md-footer-meta.md-typeset a:focus-visible {
+  outline: 2px solid var(--md-primary-bg-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---------- A unit's own mark on the Home entry ---------- */
+
+/* Zensical puts a stock plane icon beside Home. A unit that has its own mark
+   sets --fl-nav-mark to an SVG data URI and it is swapped in, as a mask so it
+   follows the nav's colour in both schemes. A unit that sets nothing keeps the
+   stock icon, so this is inert until asked for. */
+:root {
+  --fl-nav-mark: none;
+}
+.md-nav__link:has(svg.lucide-plane):not([style*="--fl-nav-mark: none"])::before {
+  content: "";
+  flex-shrink: 0;
+  width: 1.2em;
+  height: 1.2em;
+  margin-right: 0.3em;
+  background-color: currentColor;
+  mask: var(--fl-nav-mark) no-repeat center / contain;
+  -webkit-mask: var(--fl-nav-mark) no-repeat center / contain;
+}
