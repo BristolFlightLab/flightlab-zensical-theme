@@ -67,10 +67,15 @@ own mark beside **Home** in place of the stock plane icon — set one variable:
 
 ```css
 :root { --fl-nav-mark: url('data:image/svg+xml;utf8,<svg …>'); }
-.md-nav__link svg.lucide-plane { display: none; }
 ```
 
-Set nothing and the stock icon stays.
+That is the whole of it: the theme hides the stock icon for you. The mark is
+drawn as a mask, so it takes the nav's own colour in both schemes — the colours
+inside your SVG are ignored, and only its shape matters.
+
+Set nothing and the stock icon stays. The switch is a container style query, so
+on a browser without support for those the stock icon stays too, whether or not
+you set the variable.
 
 ## The artwork
 

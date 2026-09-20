@@ -315,13 +315,32 @@ html .md-footer-meta.md-typeset a:focus-visible {
 :root {
   --fl-nav-mark: none;
 }
-.md-nav__link:has(svg.lucide-plane):not([style*="--fl-nav-mark: none"])::before {
-  content: "";
-  flex-shrink: 0;
-  width: 1.2em;
-  height: 1.2em;
-  margin-right: 0.3em;
-  background-color: currentColor;
-  mask: var(--fl-nav-mark) no-repeat center / contain;
-  -webkit-mask: var(--fl-nav-mark) no-repeat center / contain;
+
+/* The guard is a container style query, and its polarity is deliberate: the
+   mark is emitted only *inside* the query, so a browser without style-query
+   support ignores the whole block and keeps the stock icon. Guarding the other
+   way round — emit always, switch off in the query — would show a bare
+   currentColor square everywhere the query did not apply, which is what the
+   `:not([style*=…])` guard this replaces did on every site: it tested the
+   inline style attribute, which a nav link never has, so it matched always.
+   Custom properties inherit, so the query is answered by the nav item's parent
+   carrying the value down from :root. */
+@container style(not (--fl-nav-mark: none)) {
+  .md-nav__link:has(svg.lucide-plane)::before {
+    content: "";
+    flex-shrink: 0;
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 0.3em;
+    background-color: currentColor;
+    mask: var(--fl-nav-mark) no-repeat center / contain;
+    -webkit-mask: var(--fl-nav-mark) no-repeat center / contain;
+  }
+
+  /* The theme hides the stock icon itself, so setting the one variable is the
+     whole of the change a unit makes. A unit that also carries its own
+     `display: none` for the plane from before is simply redundant now. */
+  .md-nav__link svg.lucide-plane {
+    display: none;
+  }
 }
