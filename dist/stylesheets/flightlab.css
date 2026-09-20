@@ -247,15 +247,27 @@
   background-color: var(--fl-red);
 }
 
-.md-footer-meta.md-typeset a,
-.md-footer-meta.md-typeset a:not(:focus, :hover) {
+/* The `html` here is load-bearing. Zensical's own rule is
+   `html .md-footer-meta.md-typeset a:not(:focus, :hover)`, and that leading
+   type selector outspecifies a bare class selector, so without it the links
+   keep the stock near-black colour and are unreadable on the red band.
+   Underlined in every state: white on red is not, by itself, a link. */
+html .md-footer-meta.md-typeset a,
+html .md-footer-meta.md-typeset a:not(:focus, :hover) {
   color: var(--md-primary-bg-color);
-}
-
-.md-footer-meta.md-typeset a:hover {
   text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
+html .md-footer-meta.md-typeset a:focus,
+html .md-footer-meta.md-typeset a:hover {
+  color: var(--md-primary-bg-color);
+  text-decoration-thickness: 0.15em;
+}
+
+/* The copyright line sets its own muted grey, which on the red band is neither
+   readable nor brand. Both halves of it go white. */
+.md-copyright,
 .md-copyright__highlight {
   color: var(--md-primary-bg-color);
 }
