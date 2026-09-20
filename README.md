@@ -62,20 +62,34 @@ University crest in the header, link and admonition colours, and the print
 adjustments.
 
 Not provided: a unit's own logo, favicon and nav mark. Keep those in your
-`docs/`, set `theme.logo` and `theme.favicon` to them, and — if you want your
-own mark beside **Home** in place of the stock plane icon — set one variable:
+`docs/`, and set `theme.logo` and `theme.favicon` to them.
+
+The nav mark needs two things, and it is worth being clear that the theme only
+supplies the second. Zensical puts no icon beside a nav entry on its own: the
+one on **Home** comes from that page's own front matter. So to show a unit mark
+there, `docs/index.md` opts in to the icon —
+
+```yaml
+---
+icon: lucide/plane
+---
+```
+
+— and the unit's CSS says what to draw instead:
 
 ```css
 :root { --fl-nav-mark: url('data:image/svg+xml;utf8,<svg …>'); }
 ```
 
-That is the whole of it: the theme hides the stock icon for you. The mark is
-drawn as a mask, so it takes the nav's own colour in both schemes — the colours
-inside your SVG are ignored, and only its shape matters.
+That is the whole of it: the theme hides the front-matter icon for you. The mark
+is drawn as a mask, so it takes the nav's own colour in both schemes — the
+colours inside your SVG are ignored, and only its shape matters.
 
-Set nothing and the stock icon stays. The switch is a container style query, so
-on a browser without support for those the stock icon stays too, whether or not
-you set the variable.
+Set neither and nothing changes. Set only the icon and you get the plain
+`lucide/plane`. Set only the variable and nothing appears, because there is no
+icon to replace — the swap is currently keyed to `lucide/plane` in particular,
+so another icon will not match. The switch is a container style query, so on a
+browser without support for those the front-matter icon stays as it is.
 
 ## The artwork
 

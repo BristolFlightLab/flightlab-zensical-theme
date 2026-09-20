@@ -308,10 +308,18 @@ html .md-footer-meta.md-typeset a:focus-visible {
 
 /* ---------- A unit's own mark on the Home entry ---------- */
 
-/* Zensical puts a stock plane icon beside Home. A unit that has its own mark
-   sets --fl-nav-mark to an SVG data URI and it is swapped in, as a mask so it
-   follows the nav's colour in both schemes. A unit that sets nothing keeps the
-   stock icon, so this is inert until asked for. */
+/* A page carrying `icon: lucide/plane` in its front matter gets that icon in
+   the nav; Zensical adds no icon of its own. A unit that would rather show its
+   own mark there sets --fl-nav-mark to an SVG data URI, and it is swapped in as
+   a mask, so it follows the nav's colour in both schemes.
+
+   Both halves are needed: no front-matter icon and there is nothing to match,
+   no --fl-nav-mark and the front-matter icon is left alone. So this is inert
+   until a unit asks for it, and inert on every page but the one with the icon.
+
+   Note the coupling to `lucide/plane` specifically. A unit whose Home page uses
+   a different icon gets no mark and no warning. That is worth generalising if
+   another unit ever wants one. */
 :root {
   --fl-nav-mark: none;
 }
